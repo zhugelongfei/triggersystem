@@ -17,9 +17,9 @@
   },
   "samples": [
     {
-      "displayName": "KeyDown To LogError",
+      "displayName": "MiniGame",
       "description": "Contains sample trigger that log a error message when the target key down",
-      "path": "Samples~/"
+      "path": "Samples~/MiniGame"
     }
   ],
   "dependencies": {

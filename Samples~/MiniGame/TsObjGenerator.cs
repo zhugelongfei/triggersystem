@@ -7,8 +7,8 @@
             EActionType actType = (EActionType)type;
             switch (actType)
             {
-                case EActionType.LogError:
-                    return new Act_LogError();
+                case EActionType.HitEnemy:
+                    return new Act_HitEnemy();
                 default:
                     break;
             }
@@ -20,8 +20,8 @@
             EConditionType condType = (EConditionType)type;
             switch (condType)
             {
-                case EConditionType.KeyDown:
-                    return new Cond_KeyDown();
+                case EConditionType.PlayerEnterTrap:
+                    return new Cond_PlayerEnterTrap();
                 default:
                     break;
             }

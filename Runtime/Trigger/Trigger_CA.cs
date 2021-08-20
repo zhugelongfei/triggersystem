@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Lonfee.TriggerSystem
 {
@@ -11,13 +12,24 @@ namespace Lonfee.TriggerSystem
     /// <summary>
     /// Start conditions and trigger actions
     /// </summary>
-    public abstract class Trigger_CA : ABaseTrigger
+    public class Trigger_CA : ABaseTrigger
     {
         protected ABaseCondMgr condMgr;
         protected ABaseActionMgr actMgr;
-        protected ETriggerState state = ETriggerState.None;
+        private ETriggerState mState = ETriggerState.None;
+        private Action<ETriggerState> onStatusChange;
 
-        public Trigger_CA(CAData data, ITSObjGenerator generator)
+        protected ETriggerState State 
+        {
+            get { return mState; }
+            set
+            {
+                mState = value;
+                onStatusChange?.Invoke(mState);
+            }
+        }
+
+        public Trigger_CA(ITSObjGenerator generator, CAData data, Action<ETriggerState> onStatusChange = null)
             : base(generator)
         {
             condMgr = new CondMgr_TotalSucc();
@@ -25,23 +37,25 @@ namespace Lonfee.TriggerSystem
 
             actMgr = new ActMgr_TotalEnter();
             actMgr.Init(this, data.actColl);
+
+            this.onStatusChange = onStatusChange;
         }
 
         public override void Start()
         {
-            if (state != ETriggerState.None)
+            if (mState != ETriggerState.None)
                 return;
 
-            state = ETriggerState.CheckStart;
+            State = ETriggerState.CheckStart;
             condMgr.Enter();
         }
 
         public override void Stop()
         {
-            if (state == ETriggerState.None)
+            if (mState == ETriggerState.None)
                 return;
 
-            switch (state)
+            switch (mState)
             {
                 case ETriggerState.CheckStart:
                     condMgr.Exit();
@@ -56,27 +70,27 @@ namespace Lonfee.TriggerSystem
                     break;
             }
 
-            state = ETriggerState.None;
+            State = ETriggerState.None;
         }
 
         public override bool IsFinished()
         {
-            return state == ETriggerState.End;
+            return mState == ETriggerState.End;
         }
 
         public override void Update(float delta)
         {
-            if (state == ETriggerState.CheckStart)
+            if (mState == ETriggerState.CheckStart)
             {
                 if (condMgr.IsSuccess())
                 {
                     // to do action
-                    state = ETriggerState.Acting;
+                    State = ETriggerState.Acting;
                     condMgr.Exit();
                     actMgr.Enter();
 
                     // to finished
-                    state = ETriggerState.End;
+                    State = ETriggerState.End;
                     actMgr.Exit();
                 }
             }

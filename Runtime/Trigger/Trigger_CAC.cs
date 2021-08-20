@@ -26,8 +26,18 @@ namespace Lonfee.TriggerSystem
         protected ABaseCondMgr startCondMgr;
         protected ABaseActionMgr actMgr;
         protected ABaseCondMgr endCondMgr;
-        protected ETriggerState state = ETriggerState.None;
-        protected Action<ETriggerState> onStatusChange;
+        private ETriggerState mState = ETriggerState.None;
+        private Action<ETriggerState> onStatusChange;
+
+        protected ETriggerState State 
+        {
+            get { return mState; }
+            set 
+            {
+                mState = value;
+                onStatusChange?.Invoke(mState);
+            }
+        }
 
         public Trigger_CAC(ITSObjGenerator generator, CACData data, Action<ETriggerState> onStatusChange = null)
             : base(generator)
@@ -46,13 +56,13 @@ namespace Lonfee.TriggerSystem
 
         public void SwitchToState(ETriggerState state)
         {
-            this.state = state;
+            this.State = state;
             onStatusChange?.Invoke(state);
         }
 
         public override void Start()
         {
-            if (state != ETriggerState.None)
+            if (mState != ETriggerState.None)
                 return;
 
             SwitchToState(ETriggerState.CheckStart);
@@ -64,10 +74,10 @@ namespace Lonfee.TriggerSystem
 
         public override void Stop()
         {
-            if (state == ETriggerState.None)
+            if (mState == ETriggerState.None)
                 return;
 
-            switch (state)
+            switch (mState)
             {
                 case ETriggerState.CheckStart:
                     startCondMgr.Exit();
@@ -88,12 +98,12 @@ namespace Lonfee.TriggerSystem
 
         public override bool IsFinished()
         {
-            return state == ETriggerState.End;
+            return mState == ETriggerState.End;
         }
 
         public override void Update(float delta)
         {
-            switch (state)
+            switch (mState)
             {
                 case ETriggerState.None:
                     break;

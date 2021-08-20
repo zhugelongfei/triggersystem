@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 
+public class EvtCls_HitEnemy
+{
+
+}
+
 namespace Lonfee.TriggerSystem.Samples
 {
-    public class Act_LogError : ABaseEvent
+    public class Act_HitEnemy : ABaseEvent
     {
         public override void InitData(object data)
         {
@@ -11,7 +16,7 @@ namespace Lonfee.TriggerSystem.Samples
 
         protected override void DoAction()
         {
-            Debug.LogError("Do Action");
+            Lonfee.EventSystem.EventMgr.Dispatch(new EvtCls_HitEnemy());
         }
     }
 }

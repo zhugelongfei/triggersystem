@@ -18,7 +18,7 @@
             protected set { isSucc = value; }
         }
 
-        public void Enter()
+        internal void Enter()
         {
             // when restart, reset the flag
             isSucc = isResetOnEnter ? false : isSucc;
@@ -27,14 +27,14 @@
 
         protected abstract void OnEnter();
 
-        public void Exit()
+        internal void Exit()
         {
             OnExit();
         }
 
         protected abstract void OnExit();
 
-        public void Ctor(ABaseCondMgr condMgr, CondCtorData ctorData)
+        internal void Ctor(ABaseCondMgr condMgr, CondCtorData ctorData)
         {
             this.condMgr = condMgr;
             this.type = ctorData.type;

@@ -11,21 +11,21 @@
             get { return type; }
         }
 
-        public void Enter()
+        internal void Enter()
         {
             OnEnter();
         }
 
         protected abstract void OnEnter();
 
-        public void Exit()
+        internal void Exit()
         {
             OnExit();
         }
 
         protected abstract void OnExit();
 
-        public void Ctor(ABaseActionMgr actMgr, ActionCtorData ctorData)
+        internal void Ctor(ABaseActionMgr actMgr, ActionCtorData ctorData)
         {
             this.actMgr = actMgr;
             this.type = ctorData.type;

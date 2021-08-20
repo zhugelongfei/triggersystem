@@ -4,7 +4,7 @@
     {
         private ITSObjGenerator generator;
 
-        public ITSObjGenerator TSObjGenerator
+        internal ITSObjGenerator TSObjGenerator
         {
             get { return generator; }
         }

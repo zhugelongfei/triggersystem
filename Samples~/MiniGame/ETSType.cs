@@ -2,12 +2,12 @@
 {
     public enum EConditionType
     {
-        KeyDown = 1,
+        PlayerEnterTrap = 1,
     }
     
     public enum EActionType
     {
-        LogError = 1,
+        HitEnemy = 1,
 
     }
 }

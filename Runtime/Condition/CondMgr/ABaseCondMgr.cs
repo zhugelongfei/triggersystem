@@ -10,7 +10,7 @@ namespace Lonfee.TriggerSystem
         /// <summary>
         /// use it like ctor.(to avoid write white block ctor in sub class)
         /// </summary>
-        public void Init(ABaseTrigger trigger, ICollection<CondCtorData> condDataColl)
+        internal void Init(ABaseTrigger trigger, ICollection<CondCtorData> condDataColl)
         {
             this.trigger = trigger;
             condList = new List<ABaseCondition>(condDataColl.Count);
@@ -24,7 +24,10 @@ namespace Lonfee.TriggerSystem
                 CondCtorData ctorData = enumerator.Current;
                 ABaseCondition cond = generator.GetCondByType(ctorData.type);
                 if (cond == null)
+                {
+                    Tools.LogError("Condition obj is null. Type is : " + ctorData.type);
                     continue;
+                }
 
                 cond.Ctor(this, ctorData);
                 cond.InitData(ctorData.data);
@@ -32,14 +35,14 @@ namespace Lonfee.TriggerSystem
             }
         }
 
-        public void Enter() 
+        internal void Enter() 
         {
             OnEnter();
         }
 
         protected abstract void OnEnter();
 
-        public void Exit()
+        internal void Exit()
         {
             OnExit();
         }
