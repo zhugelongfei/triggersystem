@@ -4,7 +4,13 @@
 TS系统（指触发器系统）是一个基于C#语言实现的根据不同的条件触发不同行为的代码框架。
 此工程为Unity Package的Git包，可通过Unity的PackageManagerWindow导入到需要使用的项目中。
 
-# 使用示例
+# 使用方法
+- 在Unity中点击菜单栏的Window->Package Manager打开PackageManager面板
+- 点击Add package from git url
+- 复制git工程的http地址，粘贴到输入栏
+- 点击Add
+
+# 应用场景
 - 游戏中玩家单位进入指定区域（条件），触发开启一个陷阱（行为）
 - 游戏中玩家单位血量低于百分之30（条件）或进入眩晕状态（条件），触发显示UI预警框（行为）
 - ...
