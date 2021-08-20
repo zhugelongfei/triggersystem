@@ -23,6 +23,5 @@
     }
   ],
   "dependencies": {
-    "com.lonfee.unity.package.tools": "1.0.0"
   }
 }
