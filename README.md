@@ -9,7 +9,7 @@ TS系统（指触发器系统）是一个基于C#语言实现的根据不同的�
 - 游戏中玩家单位血量低于百分之30（条件）或进入眩晕状态（条件），触发显示UI预警框（行为）
 - ...
 # 框架结构图
-![Frame](http://www.lonfee.cn:8001/ws/images/gitimages/triggersystem/frame.png)
+![Frame](/Images/Frame.png)
 
 | Module | Base Class | README |
 | ------ | ------ | ------ |
