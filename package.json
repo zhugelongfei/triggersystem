@@ -7,7 +7,7 @@
   "relatedPackages": {},
   "repository": {
     "type": "git",
-    "url": "git@www.lonfee.cn:/git/com.lonfee.unity.package.triggersystem.git",
+    "url": "git@github.com:zhugelongfei/triggersystem.git",
     "revision": "HEAD"
   },
   "hideInEditor": false,
