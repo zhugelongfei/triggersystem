@@ -39,7 +39,12 @@ namespace Lonfee.TriggerSystem
             }
         }
 
-        public Trigger_CAC(ITSObjGenerator generator, CACData data, Action<ETriggerState> onStatusChange = null)
+        public override bool IsFinished
+        {
+            get { return mState == ETriggerState.End; }
+        }
+
+        public Trigger_CAC(ITSObjFactory generator, CACData data, Action<ETriggerState> onStatusChange = null)
             : base(generator)
         {
             startCondMgr = new CondMgr_TotalSucc();
@@ -94,11 +99,6 @@ namespace Lonfee.TriggerSystem
             }
 
             SwitchToState(ETriggerState.None);
-        }
-
-        public override bool IsFinished()
-        {
-            return mState == ETriggerState.End;
         }
 
         public override void Update(float delta)

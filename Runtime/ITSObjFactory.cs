@@ -1,6 +1,6 @@
 ﻿namespace Lonfee.TriggerSystem
 {
-    public interface ITSObjGenerator
+    public interface ITSObjFactory
     {
         ABaseAction GetActionByType(int type);
 

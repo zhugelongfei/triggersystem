@@ -2,14 +2,16 @@
 {
     public abstract class ABaseTrigger
     {
-        private ITSObjGenerator generator;
+        private ITSObjFactory generator;
 
-        internal ITSObjGenerator TSObjGenerator
+        internal ITSObjFactory TSObjGenerator
         {
             get { return generator; }
         }
 
-        public ABaseTrigger(ITSObjGenerator generator)
+        public abstract bool IsFinished { get; }
+
+        public ABaseTrigger(ITSObjFactory generator)
         {
             if (generator == null)
                 throw new System.Exception("TS object generator can not be null.");
@@ -23,6 +25,5 @@
 
         public abstract void Update(float delta);
 
-        public abstract bool IsFinished();
     }
 }

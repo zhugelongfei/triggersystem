@@ -15,7 +15,7 @@ namespace Lonfee.TriggerSystem
             this.trigger = trigger;
             condList = new List<ABaseCondition>(condDataColl.Count);
 
-            ITSObjGenerator generator = trigger.TSObjGenerator;
+            ITSObjFactory generator = trigger.TSObjGenerator;
 
             // init cond
             IEnumerator<CondCtorData> enumerator = condDataColl.GetEnumerator();

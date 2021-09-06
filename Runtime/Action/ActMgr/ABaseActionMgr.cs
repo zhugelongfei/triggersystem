@@ -12,7 +12,7 @@ namespace Lonfee.TriggerSystem
             this.trigger = trigger;
             actionList = new List<ABaseAction>(actDataColl.Count);
 
-            ITSObjGenerator generator = trigger.TSObjGenerator;
+            ITSObjFactory generator = trigger.TSObjGenerator;
 
             // init act
             IEnumerator<ActionCtorData> enumerator = actDataColl.GetEnumerator();

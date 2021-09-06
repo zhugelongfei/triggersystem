@@ -19,7 +19,7 @@ namespace Lonfee.TriggerSystem
         private ETriggerState mState = ETriggerState.None;
         private Action<ETriggerState> onStatusChange;
 
-        protected ETriggerState State 
+        protected ETriggerState State
         {
             get { return mState; }
             set
@@ -29,7 +29,12 @@ namespace Lonfee.TriggerSystem
             }
         }
 
-        public Trigger_CA(ITSObjGenerator generator, CAData data, Action<ETriggerState> onStatusChange = null)
+        public override bool IsFinished
+        {
+            get { return mState == ETriggerState.End; }
+        }
+
+        public Trigger_CA(ITSObjFactory generator, CAData data, Action<ETriggerState> onStatusChange = null)
             : base(generator)
         {
             condMgr = new CondMgr_TotalSucc();
@@ -71,11 +76,6 @@ namespace Lonfee.TriggerSystem
             }
 
             State = ETriggerState.None;
-        }
-
-        public override bool IsFinished()
-        {
-            return mState == ETriggerState.End;
         }
 
         public override void Update(float delta)
