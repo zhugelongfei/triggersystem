@@ -1,5 +1,9 @@
 # Trigger system for unity(C#)
 
+# 地址
+- github: git@github.com:zhugelongfei/triggersystem.git
+- lonfee's git: http://www.lonfee.cn:8002/triggersystem.git
+
 # 介绍
 TS系统（指触发器系统）是一个基于C#语言实现的根据不同的条件触发不同行为的代码框架。
 此工程为Unity Package的Git包，可通过Unity的PackageManagerWindow导入到需要使用的项目中。
@@ -7,7 +11,7 @@ TS系统（指触发器系统）是一个基于C#语言实现的根据不同的�
 # Unity导入步骤
 - 在Unity中点击菜单栏的Window->Package Manager打开PackageManager面板
 - 点击Add package from git url
-- 复制git工程的地址，粘贴到输入栏
+- 复制git工程的地址，粘贴到输入栏，末尾加上#SemVer(e.g. #1.0.0)
 - 点击Add
 
 # 应用场景

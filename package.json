@@ -1,12 +1,9 @@
 {
   "name": "com.lonfee.triggersystem",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Lonfee Trigger System",
   "description": "Trigger system runtime frame for unity.",
   "hideInEditor": false,
-  "dependencies": {
-    
-  },
   "samples": [
     {
       "displayName": "MiniGame",
@@ -14,9 +11,7 @@
       "path": "Samples~/MiniGame"
     }
   ],
-  "keywords": [
-    
-  ],
+  "keywords": [],
   "author": {
     "name": "Lonfee",
     "email": "18519720472@163.com"
