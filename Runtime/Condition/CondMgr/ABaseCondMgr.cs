@@ -4,18 +4,14 @@ namespace Lonfee.TriggerSystem
 {
     public abstract class ABaseCondMgr
     {
-        protected ABaseTrigger trigger;
         protected List<ABaseCondition> condList;
 
-        /// <summary>
-        /// use it like ctor.(to avoid write white block ctor in sub class)
-        /// </summary>
-        internal void Init(ABaseTrigger trigger, ICollection<CondCtorData> condDataColl)
+        public void Ctor(ITSObjFactory generator, ICollection<CondCtorData> condDataColl)
         {
-            this.trigger = trigger;
-            condList = new List<ABaseCondition>(condDataColl.Count);
+            if (generator == null)
+                throw new System.Exception("TS object generator can not be null.");
 
-            ITSObjFactory generator = trigger.TSObjGenerator;
+            condList = new List<ABaseCondition>(condDataColl.Count);
 
             // init cond
             IEnumerator<CondCtorData> enumerator = condDataColl.GetEnumerator();
@@ -29,7 +25,7 @@ namespace Lonfee.TriggerSystem
                     continue;
                 }
 
-                cond.Ctor(this, ctorData);
+                cond.Ctor(ctorData);
                 cond.InitData(ctorData.data);
                 condList.Add(cond);
             }

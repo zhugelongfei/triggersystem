@@ -45,16 +45,15 @@ namespace Lonfee.TriggerSystem
         }
 
         public Trigger_CAC(ITSObjFactory generator, CACData data, Action<ETriggerState> onStatusChange = null)
-            : base(generator)
         {
             startCondMgr = new CondMgr_TotalSucc();
-            startCondMgr.Init(this, data.startCondColl);
+            startCondMgr.Ctor(generator, data.startCondColl);
 
             actMgr = new ActMgr_TotalEnter();
-            actMgr.Init(this, data.actColl);
+            actMgr.Ctor(generator, data.actColl);
 
             endCondMgr = new CondMgr_TotalSucc();
-            endCondMgr.Init(this, data.endCondColl);
+            endCondMgr.Ctor(generator, data.endCondColl);
 
             this.onStatusChange = onStatusChange;
         }

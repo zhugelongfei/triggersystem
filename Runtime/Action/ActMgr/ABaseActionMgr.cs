@@ -4,15 +4,14 @@ namespace Lonfee.TriggerSystem
 {
     public abstract class ABaseActionMgr
     {
-        protected ABaseTrigger trigger;
         protected List<ABaseAction> actionList;
 
-        internal void Init(ABaseTrigger trigger, ICollection<ActionCtorData> actDataColl)
+        public void Ctor(ITSObjFactory generator, ICollection<ActionCtorData> actDataColl)
         {
-            this.trigger = trigger;
-            actionList = new List<ABaseAction>(actDataColl.Count);
+            if (generator == null)
+                throw new System.Exception("TS object generator can not be null.");
 
-            ITSObjFactory generator = trigger.TSObjGenerator;
+            actionList = new List<ABaseAction>(actDataColl.Count);
 
             // init act
             IEnumerator<ActionCtorData> enumerator = actDataColl.GetEnumerator();
@@ -26,7 +25,7 @@ namespace Lonfee.TriggerSystem
                     continue;
                 }
 
-                act.Ctor(this, ctorData);
+                act.Ctor(ctorData);
                 act.InitData(ctorData.data);
                 actionList.Add(act);
             }

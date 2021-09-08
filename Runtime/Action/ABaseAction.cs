@@ -4,8 +4,6 @@
     {
         private int type;
 
-        protected ABaseActionMgr actMgr;
-
         public int Type
         {
             get { return type; }
@@ -25,9 +23,8 @@
 
         protected abstract void OnExit();
 
-        internal void Ctor(ABaseActionMgr actMgr, ActionCtorData ctorData)
+        internal void Ctor(ActionCtorData ctorData)
         {
-            this.actMgr = actMgr;
             this.type = ctorData.type;
         }
 

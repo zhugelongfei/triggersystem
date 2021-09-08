@@ -35,13 +35,12 @@ namespace Lonfee.TriggerSystem
         }
 
         public Trigger_CA(ITSObjFactory generator, CAData data, Action<ETriggerState> onStatusChange = null)
-            : base(generator)
         {
             condMgr = new CondMgr_TotalSucc();
-            condMgr.Init(this, data.condColl);
+            condMgr.Ctor(generator, data.condColl);
 
             actMgr = new ActMgr_TotalEnter();
-            actMgr.Init(this, data.actColl);
+            actMgr.Ctor(generator, data.actColl);
 
             this.onStatusChange = onStatusChange;
         }

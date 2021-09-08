@@ -5,7 +5,6 @@
         private int type;
         private bool isSucc = false;
         private bool isResetOnEnter;
-        protected ABaseCondMgr condMgr;
 
         public int Type
         {
@@ -34,9 +33,8 @@
 
         protected abstract void OnExit();
 
-        internal void Ctor(ABaseCondMgr condMgr, CondCtorData ctorData)
+        internal void Ctor(CondCtorData ctorData)
         {
-            this.condMgr = condMgr;
             this.type = ctorData.type;
             this.isResetOnEnter = ctorData.isResetOnEnter;
         }
