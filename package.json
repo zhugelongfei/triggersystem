@@ -1,6 +1,6 @@
 {
   "name": "com.lonfee.triggersystem",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "displayName": "Lonfee Trigger System",
   "description": "Trigger system runtime frame for unity.",
   "hideInEditor": false,

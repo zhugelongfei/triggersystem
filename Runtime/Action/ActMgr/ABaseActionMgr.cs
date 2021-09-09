@@ -6,7 +6,7 @@ namespace Lonfee.TriggerSystem
     {
         protected List<ABaseAction> actionList;
 
-        public void Ctor(ITSObjFactory generator, ICollection<ActionCtorData> actDataColl)
+        public void Ctor(ITSObjFactory generator, ICollection<ActionCtorData> actDataColl, TriggerCache cache = null)
         {
             if (generator == null)
                 throw new System.Exception("TS object generator can not be null.");
@@ -25,7 +25,7 @@ namespace Lonfee.TriggerSystem
                     continue;
                 }
 
-                act.Ctor(ctorData);
+                act.Ctor(ctorData, cache);
                 act.InitData(ctorData.data);
                 actionList.Add(act);
             }

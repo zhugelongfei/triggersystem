@@ -6,7 +6,7 @@ namespace Lonfee.TriggerSystem
     {
         protected List<ABaseCondition> condList;
 
-        public void Ctor(ITSObjFactory generator, ICollection<CondCtorData> condDataColl)
+        public void Ctor(ITSObjFactory generator, ICollection<CondCtorData> condDataColl, TriggerCache cache = null)
         {
             if (generator == null)
                 throw new System.Exception("TS object generator can not be null.");
@@ -25,7 +25,7 @@ namespace Lonfee.TriggerSystem
                     continue;
                 }
 
-                cond.Ctor(ctorData);
+                cond.Ctor(ctorData, cache);
                 cond.InitData(ctorData.data);
                 condList.Add(cond);
             }

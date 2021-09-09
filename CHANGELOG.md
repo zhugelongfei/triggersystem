@@ -1,8 +1,14 @@
 # TriggerSystem
 
+## [1.0.3] - 2021-09-08
+
+### Add TriggerCache.cs.
+
+1: Add TriggerCache.cs For pass params from conditions to action, see of the sample: minigames.
+
 ## [1.0.2] - 2021-09-08
 
-### Rename some class or function.
+### Rename init function.
 
 1: public CondMgr and ActionMgr 's function which name is Init(Ctor).
 2: delete parent pointer from control sub module class.

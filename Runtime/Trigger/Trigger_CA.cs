@@ -18,6 +18,7 @@ namespace Lonfee.TriggerSystem
         protected ABaseActionMgr actMgr;
         private ETriggerState mState = ETriggerState.None;
         private Action<ETriggerState> onStatusChange;
+        private TriggerCache cache;
 
         protected ETriggerState State
         {
@@ -36,11 +37,13 @@ namespace Lonfee.TriggerSystem
 
         public Trigger_CA(ITSObjFactory generator, CAData data, Action<ETriggerState> onStatusChange = null)
         {
+            cache = new TriggerCache();
+
             condMgr = new CondMgr_TotalSucc();
-            condMgr.Ctor(generator, data.condColl);
+            condMgr.Ctor(generator, data.condColl, cache);
 
             actMgr = new ActMgr_TotalEnter();
-            actMgr.Ctor(generator, data.actColl);
+            actMgr.Ctor(generator, data.actColl, cache);
 
             this.onStatusChange = onStatusChange;
         }
@@ -74,6 +77,7 @@ namespace Lonfee.TriggerSystem
                     break;
             }
 
+            cache.Clear();
             State = ETriggerState.None;
         }
 

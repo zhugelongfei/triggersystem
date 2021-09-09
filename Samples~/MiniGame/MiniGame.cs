@@ -32,7 +32,7 @@ namespace Lonfee.TriggerSystem.Samples
             data.actColl = new List<ActionCtorData>();
             data.actColl.Add(new ActionCtorData((int)EActionType.HitEnemy));
 
-            tg = new Trigger_CA(new TsObjGenerator(), data);
+            tg = new Trigger_CA(new TsObjFactory(), data);
             tg.Start();
         }
 
@@ -43,6 +43,7 @@ namespace Lonfee.TriggerSystem.Samples
 
         private void OnEvt_HitEnemy(EvtCls_HitEnemy obj)
         {
+            Debug.LogError("Damage from player : " + obj.playerId);
             enemySlider.value -= 0.2f;
         }
 
@@ -71,7 +72,7 @@ namespace Lonfee.TriggerSystem.Samples
             {
                 tg.Update(Time.deltaTime);
 
-                if (tg.IsFinished())
+                if (tg.IsFinished)
                 {
                     // restart for show again
                     tg.Stop();

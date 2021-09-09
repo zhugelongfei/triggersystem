@@ -26,6 +26,7 @@ namespace Lonfee.TriggerSystem.Samples
         {
             if (obj.playerId == playerId)
             {
+                cache["PlayerId"] = playerId;
                 IsSuccess = true;
             }
         }

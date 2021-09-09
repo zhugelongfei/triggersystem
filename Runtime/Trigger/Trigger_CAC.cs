@@ -28,6 +28,7 @@ namespace Lonfee.TriggerSystem
         protected ABaseCondMgr endCondMgr;
         private ETriggerState mState = ETriggerState.None;
         private Action<ETriggerState> onStatusChange;
+        private TriggerCache cache;
 
         protected ETriggerState State 
         {
@@ -46,14 +47,16 @@ namespace Lonfee.TriggerSystem
 
         public Trigger_CAC(ITSObjFactory generator, CACData data, Action<ETriggerState> onStatusChange = null)
         {
+            cache = new TriggerCache();
+
             startCondMgr = new CondMgr_TotalSucc();
-            startCondMgr.Ctor(generator, data.startCondColl);
+            startCondMgr.Ctor(generator, data.startCondColl, cache);
 
             actMgr = new ActMgr_TotalEnter();
-            actMgr.Ctor(generator, data.actColl);
+            actMgr.Ctor(generator, data.actColl, cache);
 
             endCondMgr = new CondMgr_TotalSucc();
-            endCondMgr.Ctor(generator, data.endCondColl);
+            endCondMgr.Ctor(generator, data.endCondColl, cache);
 
             this.onStatusChange = onStatusChange;
         }
@@ -96,6 +99,8 @@ namespace Lonfee.TriggerSystem
                 default:
                     break;
             }
+
+            cache.Clear();
 
             SwitchToState(ETriggerState.None);
         }

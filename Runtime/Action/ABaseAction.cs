@@ -3,6 +3,7 @@
     public abstract class ABaseAction
     {
         private int type;
+        protected TriggerCache cache;
 
         public int Type
         {
@@ -23,9 +24,10 @@
 
         protected abstract void OnExit();
 
-        internal void Ctor(ActionCtorData ctorData)
+        internal void Ctor(ActionCtorData ctorData, TriggerCache cache)
         {
             this.type = ctorData.type;
+            this.cache = cache;
         }
 
         public abstract void InitData(object data);

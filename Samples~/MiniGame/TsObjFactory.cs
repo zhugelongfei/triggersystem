@@ -1,6 +1,6 @@
 ﻿namespace Lonfee.TriggerSystem.Samples
 {
-    public class TsObjGenerator : ITSObjGenerator
+    public class TsObjFactory : ITSObjFactory
     {
         public ABaseAction GetActionByType(int type)
         {

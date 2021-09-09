@@ -5,6 +5,7 @@
         private int type;
         private bool isSucc = false;
         private bool isResetOnEnter;
+        protected TriggerCache cache;
 
         public int Type
         {
@@ -33,10 +34,11 @@
 
         protected abstract void OnExit();
 
-        internal void Ctor(CondCtorData ctorData)
+        internal void Ctor(CondCtorData ctorData, TriggerCache cache)
         {
             this.type = ctorData.type;
             this.isResetOnEnter = ctorData.isResetOnEnter;
+            this.cache = cache;
         }
 
         public abstract void InitData(object data);
